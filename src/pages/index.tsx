@@ -6,8 +6,7 @@ import { api } from "@/utils/api";
 import { SignIn, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
+  const { data: posts } = api.posts.getAll.useQuery();
   const user = useUser();
 
   return (
@@ -19,10 +18,14 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div>
-          {!user.isSignedIn && <SignInButton/>}
+          {!user.isSignedIn && <SignInButton />}
           {!!user.isSignedIn && <SignOutButton />}
         </div>
-        <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+        <div>
+          {posts?.map((post) => {
+            return <div key={post.id}>{post.content}</div>;
+          })}
+        </div>
       </main>
     </>
   );
