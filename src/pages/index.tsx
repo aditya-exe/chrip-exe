@@ -4,18 +4,16 @@ import { api } from "@/utils/api";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import CreatePostWizard from "@/components/create-post-wizard";
 import PostView from "@/components/post-view";
+import LoadingSpinner from "@/components/loading-spinner";
+import Feed from "@/components/feed";
 
 const Home: NextPage = () => {
-  const { data: postsData, isLoading: postsLoading } =
-    api.posts.getAll.useQuery();
-  const user = useUser();
+  const { user, isLoaded: userLoaded, isSignedIn } = useUser();
 
-  if (postsLoading) {
-    return <div>Loading...</div>;
-  }
+  api.posts.getAll.useQuery();
 
-  if (!postsData) {
-    return <div>Something went wrong :/</div>;
+  if (!userLoaded) {
+    return <div />;
   }
 
   return (
@@ -29,14 +27,10 @@ const Home: NextPage = () => {
         <div className="h-full w-full border-x border-slate-400 md:max-w-2xl">
           <div className="flex border-b border-slate-400 p-4">
             <div className="flex w-full justify-center">
-              {user.isSignedIn ? <CreatePostWizard /> : <SignInButton />}
+              {isSignedIn ? <CreatePostWizard /> : <SignInButton />}
             </div>
           </div>
-          <div className="flex flex-col">
-            {[...postsData, ...postsData]?.map((fullPost) => {
-              return <PostView key={fullPost.post.id} {...fullPost} />;
-            })}
-          </div>
+          <Feed/>
         </div>
       </main>
     </>
