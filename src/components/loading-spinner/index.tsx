@@ -3,7 +3,7 @@ const LoadingSpinner = (props: { size?: number }) => {
     <div role="status" className="flex h-screen items-center justify-center">
       <svg
         aria-hidden="true"
-        className="mr-2 h-14 w-14 animate-spin fill-slate-400 text-slate-200 dark:text-slate-600"
+        className="mr-2 animate-spin fill-slate-400 text-slate-200 dark:text-slate-600"
         viewBox="0 0 100 101"
         fill="none"
         width={props.size ?? 16}
