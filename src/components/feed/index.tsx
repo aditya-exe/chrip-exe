@@ -16,7 +16,7 @@ const Feed = () => {
 
   return (
     <div className="flex flex-col">
-      {[...postsData, ...postsData]?.map((fullPost) => {
+      {postsData.map((fullPost) => {
         return <PostView key={fullPost.post.id} {...fullPost} />;
       })}
     </div>
