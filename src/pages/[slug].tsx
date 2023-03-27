@@ -1,12 +1,10 @@
 import { api } from "@/utils/api";
 import { GetStaticProps, type NextPage } from "next";
 import Head from "next/head";
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
-import { appRouter } from "@/server/api/root";
-import { prisma } from "@/server/db";
-import superjson from "superjson";
 import PageLayout from "@/components/page-layout";
 import Image from "next/image";
+import ProfileFeed from "@/components/profile-feed";
+import { generateSSGHelper } from "@/lib/helpers";
 
 const ProfilePage: NextPage<{ userName: string }> = ({ userName }) => {
   const { data } = api.profile.getUserByUserName.useQuery({
@@ -38,17 +36,16 @@ const ProfilePage: NextPage<{ userName: string }> = ({ userName }) => {
         <div className="h-[64px]" />
         <div className="p-4 text-2xl font-bold">{`@${data.userName}`}</div>
         <div className="w-full border-b border-slate-400" />
+        <div className="h-fit">
+          <ProfileFeed userId={data.id} />
+        </div>
       </PageLayout>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const ssg = createProxySSGHelpers({
-    router: appRouter,
-    ctx: { prisma, userId: null },
-    transformer: superjson,
-  });
+  const ssg = generateSSGHelper();
 
   const slug = context.params?.slug;
 

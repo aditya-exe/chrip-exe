@@ -1,4 +1,4 @@
-import { filterUserForClient } from '@/lib/filterUserForClient';
+import { filterUserForClient } from '@/lib/helpers';
 import { TRPCError } from '@trpc/server';
 import { clerkClient } from '@clerk/nextjs/server';
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
