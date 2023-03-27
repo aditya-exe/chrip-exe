@@ -7,7 +7,7 @@ const Feed = () => {
     api.posts.getAll.useQuery();
 
   if (postsLoading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner size={80} />;
   }
 
   if (!postsData) {

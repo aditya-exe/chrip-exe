@@ -2,6 +2,7 @@ import { PostWithUser } from "@/types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
+import Link from "next/link";
 
 dayjs.extend(relativeTime);
 
@@ -22,8 +23,12 @@ const PostView = (props: PostWithUser) => {
       />
       <div className="flex flex-col">
         <div className="flex font-bold text-slate-400 ">
-          <span>{`@${author.userName}`}</span>
-          <span>{` - ${dayjs(post.createdAt).fromNow()}`}</span>
+          <Link href={`/@${author.userName}`}>
+            <span>{`@${author.userName} `}</span>
+          </Link>
+          <Link href={`/post/${post.id}`}>
+            <span>{` - ${dayjs(post.createdAt).fromNow()}`}</span>
+          </Link>
         </div>
         <span className="text-2xl">{post.content}</span>
       </div>

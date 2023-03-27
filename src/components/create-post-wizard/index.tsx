@@ -49,7 +49,7 @@ const CreatePostWizard = () => {
         onKeyDown={(e) => {
           e.preventDefault();
           if (input !== "") {
-            mutate({ content: input });
+            mutate({ content: input } );
           }
         }}
         disabled={isPosting}
