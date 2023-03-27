@@ -1,0 +1,26 @@
+name: CI
+
+on: [push, pull_request]
+
+env:
+  DATABASE_URL: "mysql://0ujqhb7zyo23p82ptilp:pscale_pw_saK3UbVdLIIbpJLWj0IkFNUe8TjK5UJa7OEpPFySMbr@ap-south.connect.psdb.cloud/chirpdb?sslaccept=strict"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Print Environment Variable
+        run: echo $MY_ENV_VAR

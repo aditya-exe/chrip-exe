@@ -30,7 +30,7 @@ const CreatePostWizard = () => {
   }
 
   return (
-    <div className="flex h-[100px] w-full items-center gap-3">
+    <div className="flex h-[100px] p-4 w-full items-center gap-3">
       <Image
         src={user.profileImageUrl}
         alt="Profile Image"
