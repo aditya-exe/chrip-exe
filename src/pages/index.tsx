@@ -1,10 +1,7 @@
 import { type NextPage } from "next";
-import Head from "next/head";
 import { api } from "@/utils/api";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import CreatePostWizard from "@/components/create-post-wizard";
-import PostView from "@/components/post-view";
-import LoadingSpinner from "@/components/loading-spinner";
 import Feed from "@/components/feed";
 import PageLayout from "@/components/page-layout";
 

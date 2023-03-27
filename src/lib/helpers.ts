@@ -7,7 +7,11 @@ import { TRPCError } from "@trpc/server";
 import { prisma } from '@/server/db';
 
 export function filterUserForClient(user: User) {
-  return { id: user.id, userName: user.username, profileImage: user.profileImageUrl };
+  return {
+    id: user.id,
+    userName: user.username,
+    profileImage: user.profileImageUrl
+  };
 }
 
 export async function addUserDataToPosts(posts: Post[]) {

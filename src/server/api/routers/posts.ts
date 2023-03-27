@@ -1,13 +1,10 @@
 import { privateProcedure } from './../trpc';
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { clerkClient } from "@clerk/nextjs/server";
 import { TRPCError } from "@trpc/server";
 import { Redis } from '@upstash/redis';
 import { Ratelimit } from '@upstash/ratelimit';
-import { addUserDataToPosts, filterUserForClient } from '@/lib/helpers';
-
-
+import { addUserDataToPosts } from '@/lib/helpers';
 
 const rateLimit = new Ratelimit({
   redis: Redis.fromEnv(),
