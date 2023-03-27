@@ -56,7 +56,7 @@ const CreatePostWizard = () => {
       />
       {input !== "" && !isPosting && (
         <button
-          onClick={(e) => mutate({ content: input })}
+          onClick={(_e) => mutate({ content: input })}
           className={"min-w-[100px] rounded border-2 border-slate-400 p-2"}
         >
           Post

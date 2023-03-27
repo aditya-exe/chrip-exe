@@ -6,7 +6,7 @@ import Feed from "@/components/feed";
 import PageLayout from "@/components/page-layout";
 
 const Home: NextPage = () => {
-  const { user, isLoaded: userLoaded, isSignedIn } = useUser();
+  const { isLoaded: userLoaded, isSignedIn } = useUser();
 
   api.posts.getAll.useQuery();
 

@@ -3,7 +3,7 @@ import PageLayout from "@/components/page-layout";
 import PostView from "@/components/post-view";
 import { generateSSGHelper } from "@/lib/helpers";
 import { api } from "@/utils/api";
-import { GetStaticProps, type NextPage } from "next";
+import { type GetStaticProps, type NextPage } from "next";
 import Head from "next/head";
 
 const SinglePostPage: NextPage<{ postId: string }> = ({ postId }) => {

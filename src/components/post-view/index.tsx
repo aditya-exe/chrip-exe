@@ -1,4 +1,4 @@
-import { PostWithUser } from "@/types";
+import { type PostWithUser } from "@/types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";

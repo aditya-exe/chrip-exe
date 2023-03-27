@@ -5,19 +5,30 @@ import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { z } from "zod";
 
 export const profileRouter = createTRPCRouter({
-  getUserByUserName: publicProcedure
-    .input(z.object({
-      userName: z.string()
-    }))
+  getUserByUsername: publicProcedure
+    .input(z.object({ userName: z.string() }))
     .query(async ({ input }) => {
       const [user] = await clerkClient.users.getUserList({
         username: [input.userName],
       });
 
       if (!user) {
-        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+        const users = (
+          await clerkClient.users.getUserList({
+            limit: 200,
+          })
+        )
+        const user = users.find((user) => user.externalAccounts.find((account) => account.username === input.userName));
+        if (!user) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "User not found",
+          });
+        }
+        return filterUserForClient(user)
       }
 
       return filterUserForClient(user);
-    })
+
+    }),
 });
