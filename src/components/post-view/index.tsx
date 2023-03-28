@@ -3,11 +3,13 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 dayjs.extend(relativeTime);
 
 const PostView = (props: PostWithUser) => {
   const { post, author } = props;
+  const router = useRouter();
 
   return (
     <div
@@ -17,9 +19,13 @@ const PostView = (props: PostWithUser) => {
       <Image
         src={author.profileImage}
         alt={`@${author.userName}'s Profile Picture`}
-        className={"h-14 rounded-full"}
+        className={"h-14 rounded-full cursor-pointer"}
         height={56}
         width={56}
+        onClick={(e) => {
+          e.preventDefault();
+          router.push(`/${author.userName}`).catch((err) => console.error(err));
+        }}
       />
       <div className="flex flex-col">
         <div className="flex font-bold text-slate-400 ">
