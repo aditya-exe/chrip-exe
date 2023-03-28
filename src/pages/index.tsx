@@ -19,8 +19,11 @@ const Home: NextPage = () => {
       <PageLayout>
         <div className="flex border-b border-slate-400">
           {!isSignedIn && (
-            <div className="flex justify-center">
-              <SignInButton />
+            <div className="flex w-full items-center justify-center gap-x-4 p-4">
+              <div className="rounded border-2 border-slate-600 bg-slate-400 p-2 text-white">
+                <SignInButton />
+              </div>
+              <span className="font-bold text-xl">Sign In to send emojis!</span>
             </div>
           )}
           {isSignedIn && <CreatePostWizard />}
