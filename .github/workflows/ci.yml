@@ -3,8 +3,7 @@ name: CI
 on: [push, pull_request]
 
 env:
-  DATABASE_URL: "mysql://0ujqhb7zyo23p82ptilp:pscale_pw_saK3UbVdLIIbpJLWj0IkFNUe8TjK5UJa7OEpPFySMbr@ap-south.connect.psdb.cloud/chirpdb?sslaccept=strict"
-
+  DATABASE_URL: "mysql://FAKE_saK3U"
 jobs:
   build:
     runs-on: ubuntu-latest
